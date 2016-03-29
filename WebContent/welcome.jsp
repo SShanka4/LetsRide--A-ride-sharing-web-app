@@ -4,6 +4,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script>
+function validateSearch() {
+
+	  var s = document.forms["frm"]["pid"].value;
+	  var d = document.forms["frm"]["destination"].value;
+	  
+	  if (s == ""){ // == is comparison... = is assignment
+          document.getElementById('error').innerHTML = "Please enter both the values";
+          return false;
+      }
+	  else if(s==d){
+		  document.getElementById('error').innerHTML = "Source and Destination cannot be the same";
+          return false;
+	  }
+      else
+          return true;
+	  }
+</script>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -31,6 +49,7 @@
     cursor: pointer;
                
       </style>
+
 </head>
   <%
     User user =(User) session.getAttribute("name");
@@ -69,7 +88,9 @@
 <h1 class="text-center"> Lets share a Ride! </h1>
 <p>
 <br>
- <form method="post" name="frm" action="Search" class="form-horizontal">
+ <div style="background:#F9EECF;" name="error" id="error"> 
+    </div>
+ <form method="post" name="frm" action="Search" class="form-horizontal" onsubmit="return validateSearch()">
  
       
        <div class="row">

@@ -21,6 +21,7 @@ public class SearchServlet extends HttpServlet {
             System.out.println("Connected!");
             String pid = request.getParameter("pid");
             String destination = request.getParameter("destination");
+           
             
             
             

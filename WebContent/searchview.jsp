@@ -20,17 +20,17 @@
 <title>Welcome <%=user.getFirstname()%></title>  
 </head>  
 <body>  <center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
-    <h3>Having fun ha!!!</h3>  
+     
     <h4>  
-        Hello, enjoy our search 
+        Hello, enjoy our search results
         <%=user.getFirstname()%></h4>  
  
 
-        <table width="700px" align="center"
+        <table width="900px" align="center"
                style="border:1px solid #000000;">
             <tr>
-                <td colspan=4 align="center"
-                    style="background-color:teal">
+                <td colspan=5 align="center"
+                    style="background-color:aqua;">
                     <b>User Record</b></td>
             </tr>
             <tr style="background-color:lightgrey;">
@@ -43,8 +43,10 @@
             <%
                 int count = 0;
                 String color = "#F9EBB3";
-                if (request.getAttribute("piList") != null) {
-                    Travel al = (Travel) request.getAttribute("piList");
+                Travel al = (Travel) request.getAttribute("piList");
+                //if (request.getAttribute("piList") != null) {
+                	if (al.getId() != 0) {
+                    //Travel al = (Travel) request.getAttribute("piList");
                     System.out.println(al);
                     //Iterator itr = al.iterator();
                    // while (itr.hasNext()) {
@@ -65,14 +67,19 @@
             <%
                     }
                 
-                if (count == 0) {
+                   else {
+                	   
             %>
             <tr>
-                <td colspan=4 align="center"
-                    style="background-color:#eeffee"><b>No Record Found..</b></td>
+                <td colspan=5 align="center"
+                    style="background-color:#eeffee"><b>No records found</b></td>
             </tr>
             <%            }
             %>
         </table>
+        
+          <br>
+    <br>
+    <a href="#p">@Copyright: A Mustangs Prd.. All Rights Reserved@2016</a>
     </body>
 </html>

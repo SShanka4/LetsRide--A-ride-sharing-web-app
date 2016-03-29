@@ -62,6 +62,8 @@ div.relative {
     margin: auto;}
 
     </style>
+    
+    
  </head>
 
  <body>
@@ -74,7 +76,7 @@ div.relative {
 <div>
   <form action="/LetsRide/login" method="get">
     <label for="fname";style="color:blue"><b> Username</b></label> <br>
-    <input type="text" id="fname" name="username" required="required" placeholder="Enter E-mail">
+    <input type="text" id="fname" name="username" required="required" placeholder="Enter Name">
     <br> 
     <p>
     <label for="lname"><b>Password</b></label>  <br>
@@ -88,6 +90,8 @@ div.relative {
 </div>
     
 
-
+  <br>
+    <br>
+    <a href="#p">@Copyright: A Mustangs Prd.. All Rights Reserved@2016</a>
   </body>  
 </html>  
