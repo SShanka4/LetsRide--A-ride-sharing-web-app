@@ -24,8 +24,8 @@ function validation()
 </head>
  
 <body>  
-<img class="img-responsive" img src="file:///C:\Users\mannu\Desktop\carpool.jpg" alt="Lets Ride" align="center" style="height:150px;width:200px">
-<h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Create your LetsRide Account</i></h1>
+<center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
+<h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i>Please create your LetsRide Account</i></h1>
   <div class="container-fluid">
    <div class="jumbotron">
       <form name="signup" action="/LetsRide/login" method="post" onsubmit="return validation();">  

@@ -21,7 +21,7 @@ input[type=text], select {
     max-width: 100%;
     style=height:125px;
     width:200px;
-    left: 370px;
+    left: 0px;
     position: relative;
     }
 
@@ -65,7 +65,7 @@ div.relative {
  </head>
 
  <body>
-  <img src="file:///C:\Users\Vishal\workspace\LetsRide\WebContent\letsride.png" alt="Lets Ride" >
+  <center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
  
      <h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Login your LetsRide Account</i></h1>    
     <div class="container-fluid">

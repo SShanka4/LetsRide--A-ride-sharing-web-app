@@ -1,49 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="com.domain.User" %>
+    <%@page import="com.domain.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-</head>
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">  
-<title>Welcome <%=session.getAttribute("name")%></title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<title>Search</title>
+
+<style>
+    img {
+    max-width: 100%;
+    style=height:125px;
+    width:200px;
+    left: 0px;
+    position: relative;
+    }
+    
+    input[type=submit] {
+    width: 45%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+               
+      </style>
+</head>
+  <%
+    User user =(User) session.getAttribute("name");
+	%>    
+<title>Welcome <%=user.getFirstname()%></title>  
 </head>  
 <body>  
-<img class="img-responsive" img src="file:///C:\Users\Vishal\Desktop\unnamed.jpg" alt="Lets Ride" align="center" style="height:150px;width:200px">
-    <h3>Login successful!!!</h3>
-    <%
-    User user =(User) session.getAttribute("name");
-	%>  
-    <h4>  
-        Hello, <%=user.getFirstname()%> </h4>  
-     
-     <form action="${pageContext.request.contextPath}/logout" method="post">
-    <input type="submit" value="Logout" />
-</form>
-        
-      
- <form method="post" name="frm" action="Search" class="form">
+<center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
+<br>
+<p>
+
+<form class="form-horizontal"  action="${pageContext.request.contextPath}/logout" method="post">
+        <div class="row">
+            <div class="col-xs-1">
+            <p> </p></div>
+            <div class="col-xs-2">
+               <h3 align="left" for="usr"><b>Welcome <%=user.getFirstname()%>!</b></h3>
+                 </div>
+             <div class="col-xs-6">
+                <p> </p></div>
+             <div class="col-xs-1">
+            <p> </p></div>
+            <div class="col-xs-2">
+            <button type="submit" class="btn btn-danger">Logoff</button> 
+               <p> </p></div>
+                                           
+           </div>
+    </form>
+  <!--   <pre>
+    <p style="font-family:trajanpro;font-size:250%;">       Welcome <%=session.getAttribute("name")%> <p>
+    </pre>   -->
+    <p>
+    <br>
+    <br>
+
+<h1 class="text-center"> Lets share a Ride! </h1>
+<p>
+<br>
+ <form method="post" name="frm" action="Search" class="form-horizontal">
  
-      <table border="0" width="300" align="center" bgcolor="#e9f">
-      <div class="form-group"> 
-        <tr><td colspan=2 style="font-size:12pt;" align="center">
-        <h3>Search rides</h3></td></tr>
+      
+       <div class="row">
+            <div class="col-xs-1">
+            <p> </p></div>
+            <div class="col-xs-1">
+               <label for="pid">Source</label>
+                 </div>
+        <div class="col-xs-3">
+         <input  type="text" class="form-control" name="pid" id="pid">
         </div>
-        <div class="form-group"> 
-        <tr><td ><b>Source</b></td>
-        <td>: <input  type="text" name="pid" id="pid">
-        <tr><td ><b>Destination</b></td>
-          <td>: <input  type="text" name="destination" id="destination">
-        </td></tr>    </div>
-        <div class="form-group">     
-        <tr><td colspan=2 align="center">
-        <input  type="submit" name="submit" value="Search"></td></tr></div>
-      </table>
+           <div class="col-xs-1">
+            <p> </p></div>
+            <div class="col-xs-1">
+               <label for="destination">Destination</label>
+                 </div>
+                 <div class="col-xs-3">
+         <input  type="text" class="form-control" name="destination" id="destination">
+         </div>
+          
+               <div class="col-lg-2">
+                <button type="submit" class="btn btn-success">Search</button> 
+               
+            </div>
+        </div>
     </form>
     
     <h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Share your travel details </i></h1>
@@ -51,7 +102,7 @@
    <div class="jumbotron">
       <form name="signup" action="/LetsRide/postiti" method="post" onsubmit="return validation();">  
         <fieldset style="width: 300px">  
-            <legend>Please post your travel details :) </legend>  
+            <legend>Please post your travel details</legend>  
             <table align="center">  
             <div class="form-group">
                 <tr>  
@@ -59,19 +110,21 @@
                     <td><input type="text" name="source" required="required" /></td>  
                 </tr>  
                 </div>
+                <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Destination</td>  
                     <td><input type="text" name="destination" required="required" /></td>  
                 </tr> 
                 </div>
+                <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Price</td>  
                     <td><input type="text" name="price" required="required" /></td>  
                 </tr> 
                 </div>
-           
+           <tr><td><br></td></tr>
                 <div class="form-group">
  
                 <tr>  
@@ -79,7 +132,9 @@
                     <td><input type="text" name="distance" required="required" /></td>  
                 </tr>
                 </div>
+                <tr><td><br></td></tr>
                 <div class="form-group">
+                
                 <tr>  
                     <td>Capacity</td>  
                     <td><input type="text" name="capacity" required="required" /></td>  
@@ -90,18 +145,20 @@
                     <td><input type="hidden" value="<%=user.getFirstname()%>" name="sessionId"/></td>  
                 </tr>  
                 </div>
+                <tr><td><br></td></tr>
                 
-                <div class="form-group">
-                <tr>  
-                    <td><input type="submit" value="Post" /></td>  
-                </tr>  
-                </div>
+                <p>                
+                  
+                <tr><td colspan=2 align="center"><button type="submit" class="btn btn-success">Post</button> </td></tr>
+               
+            
               
             </table>  
         </fieldset>  
     </form>  
-    
-    <a href="itirenary.jsp">Iteranary Posting</a>
+    <br>
+    <br>
+    <a href="#p">@Copyright: A Mustangs Prd.. All Rights Reserved@2016</a>
 </body>
 </html>
 </body>  

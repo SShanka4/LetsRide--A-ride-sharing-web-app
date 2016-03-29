@@ -19,8 +19,7 @@
 	%>  
 <title>Welcome <%=user.getFirstname()%></title>  
 </head>  
-<body>  
-<img class="img-responsive" img src="file:///C:\Users\mannu\Desktop\carpool.jpg" alt="Lets Ride" align="center" style="height:150px;width:200px">
+<body>  <center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
     <h3>Having fun ha!!!</h3>  
     <h4>  
         Hello, enjoy our search 

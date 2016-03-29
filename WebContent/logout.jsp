@@ -9,7 +9,7 @@ response.sendRedirect("/WebContent/WEB-INF/index.jsp"); %>
 <title>Insert title here</title>
 </head>
 <body>
-        
+     <center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>   
 
 </body>
 </html>
