@@ -1,12 +1,33 @@
 package com.domain;
 
+import java.util.Date;
+
 public class Travel {
 	
-	private int id,price,userid,capacity;
+	private int id,price,userid,capacity,hour,minute;
 	private String source,destination;
 	private long distance;
+	Date date;
 	
 	
+	public int getHour() {
+		return hour;
+	}
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	public int getMinute() {
+		return minute;
+	}
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public int getCapacity() {
 		return capacity;
 	}

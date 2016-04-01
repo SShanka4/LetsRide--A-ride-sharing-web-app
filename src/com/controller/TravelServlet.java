@@ -2,6 +2,10 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,6 +53,7 @@ public class TravelServlet extends HttpServlet {
         //Look at this piece of code everytime you run
         
         int id=8;
+        Date date=new Date();;
         //HttpSession session = request.getSession(); 
         //User user =(User) session.getAttribute("name");
         //User user=(User) request.getSession(false).getAttribute("name");
@@ -63,6 +68,18 @@ public class TravelServlet extends HttpServlet {
         int price=Integer.parseInt(request.getParameter("price"));    
         Long distance=Long.parseLong(request.getParameter("distance")); 
         int capacity=Integer.parseInt(request.getParameter("capacity")); 
+        //Working on Date variable
+        String startDateStr = request.getParameter("day");
+        System.out.println("stsartdate Str"+startDateStr);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+        	date=sdf.parse(startDateStr);
+			System.out.println("date entered is="+date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        int hour=Integer.parseInt(request.getParameter("hour")); 
+        int minute=Integer.parseInt(request.getParameter("minute")); 
         
               
         Travel travel=new Travel();
@@ -73,15 +90,22 @@ public class TravelServlet extends HttpServlet {
         travel.setDistance(distance);
         travel.setUserid(userid);
         travel.setId(id);
+        travel.setCapacity(capacity);
+        travel.setDate(date);
+        travel.setHour(hour);
+        travel.setMinute(minute);
+        
         
         
         
         boolean userInserted=travelService.postTravel(travel);
+        System.out.println("user inserted="+userInserted);
         if(userInserted)
         {
-        	
-        	RequestDispatcher rd=request.getRequestDispatcher("postSuccess.jsp");
-        	
+        	response.sendRedirect("postSuccess.jsp");
+        	//RequestDispatcher rd=request.getRequestDispatcher("postSuccess.jsp");
+        	//rd.forward(request, response);
+        	       	
         }
         
       

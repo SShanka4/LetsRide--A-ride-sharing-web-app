@@ -10,6 +10,7 @@ public class TravelService {
 		boolean posted;
 		System.out.println(travel.getUserid());
 		posted=TravelDao.postTravel(travel);
+		System.out.println("psted in service class"+posted);
 		return posted;
 	}
 
