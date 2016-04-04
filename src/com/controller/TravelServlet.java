@@ -59,6 +59,10 @@ public class TravelServlet extends HttpServlet {
         //User user=(User) request.getSession(false).getAttribute("name");
         //System.out.println(user.getId());
         //System.out.println(user.getFirstname());
+        //Fetching multiple sources
+        String initPickup=request.getParameter("additem_1");
+        int initPickupDist=Integer.parseInt(request.getParameter("srcDist_1"));
+        
         TravelService travelService=new TravelService();
         String firstname=request.getParameter("sessionId");
         int userid=travelService.fetchUserID(firstname);
@@ -100,6 +104,9 @@ public class TravelServlet extends HttpServlet {
         
         boolean userInserted=travelService.postTravel(travel);
         System.out.println("user inserted="+userInserted);
+        travel.setSource(initPickup);
+        travel.setDistance(initPickupDist);
+        userInserted=travelService.postTravel(travel);
         if(userInserted)
         {
         	response.sendRedirect("postSuccess.jsp");

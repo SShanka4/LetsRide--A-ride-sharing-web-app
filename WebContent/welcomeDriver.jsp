@@ -4,6 +4,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script>
+   function getMoreFields() {
+	  //alert('Clicked');
+	  var d = document.getElementById("moreFields");
+	  var newName1 = document.createElement("TH");
+	  d.innerHTML="sdjbsdk";
+  	</script>
+	
+	<script language="javascript">
+var addid = 0;
+
+function addInput(id){
+    var docstyle = document.getElementById('addlist').style.display;
+    if(docstyle == 'none')
+        document.getElementById('addlist').style.display = '';
+
+    addid++;
+    
+    	
+    //var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='100' value='' class='buckinput' name='items[]' style='padding:5px;' /> <a href='javascript:void(0);' onclick='addInput("+addid+")' id='addlink_"+addid+"'>add more</a></div><br>";
+	var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' />";
+	if(addid<3){
+    document.getElementById('addlist').innerHTML += text;}
+}
+</script>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -80,7 +105,7 @@
                  </div>
         <div class="col-xs-3">
          <input  type="text" class="form-control" name="pid" id="pid">
-        </div>
+         
            <div class="col-xs-1">
             <p> </p></div>
             <div class="col-xs-1">
@@ -107,7 +132,12 @@
             <div class="form-group">
                 <tr>  
                     <td>Source</td>  
-                    <td><input type="text" name="source" required="required" /></td>  
+                    <td><input type="text" name="source" required="required" /></td>
+                    <tr><td><div id="addlist" class="alt1" style="padding:10px;">
+    
+	<input type="button" onclick="addInput(addlist)" value="More Inputs">
+</div></td></tr>
+        </div>  
                 </tr>  
                 </div>
                 <tr><td><br></td></tr>

@@ -21,7 +21,11 @@ function validateSearch() {
       else
           return true;
 	  }
+	  
+	  
 </script>
+
+
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -109,7 +113,17 @@ function validateSearch() {
                  </div>
                  <div class="col-xs-3">
          <input  type="text" class="form-control" name="destination" id="destination">
+        
+   
+
          </div>
+         
+         
+         
+         
+         
+         
+         
           
                <div class="col-lg-2">
                 <button type="submit" class="btn btn-success">Search</button> 
