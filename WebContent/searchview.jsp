@@ -34,6 +34,7 @@
                     <b>User Record</b></td>
             </tr>
             <tr style="background-color:lightgrey;">
+                <td><b>Select</b></td>
                 <td><b>User Id</b></td>
                 <td><b>Destination</b></td>
                 <td><b>Source</b></td>
@@ -43,11 +44,14 @@
             <%
                 int count = 0;
                 String color = "#F9EBB3";
-                Travel al = (Travel) request.getAttribute("piList");
+                
+                ArrayList<Travel> searchList=new ArrayList<Travel>();
+                searchList=(ArrayList<Travel>)request.getAttribute("searchList");
                 //if (request.getAttribute("piList") != null) {
-                	if (al.getId() != 0) {
+                	
+                	//if (al.getId() != 0) {
                     //Travel al = (Travel) request.getAttribute("piList");
-                    System.out.println(al);
+                    //System.out.println(al);
                     //Iterator itr = al.iterator();
                    // while (itr.hasNext()) {
  
@@ -56,25 +60,39 @@
                       //  }
                        // count++;
                        // ArrayList pList = (ArrayList) itr.next();
+                       for(Travel travel:searchList){
+                    	   //Travel travel=new Travel();
+                    	   //for(int i=0;i<searchList.size();i++){
+                    		 //  travel=searchList.get(i);
+                    		  // System.out.println(travel.getId());
             %>
+            <form action="${pageContext.request.contextPath}/booking" method=GET>
             <tr style="background-color:<%=color%>;">
-               <td><%=al.getUserid() %></td>
-               <td><%=al.getDestination()%></td>
-               <td><%=al.getSource()%></td>
-                <td><%=al.getPrice()%></td>
-                <td><%=al.getDistance()%></td>
+               
+               <td><%=travel.getId() %></td>
+               <td><%=travel.getDestination()%></td>
+               <td><%=travel.getSource()%></td>
+                <td><%=travel.getPrice()%></td>
+                <td><%=travel.getDistance()%></td>
+                <td><input type="radio" name="travelid" value="<%=travel.getId() %>"></td>
+             </input>
             </tr>
+            
             <%
                     }
+                    	  
+            
                 
-                   else {
+                   //else {
                 	   
             %>
-            <tr>
+            <tr><td><input type="submit" name="booksubmit" value="BOOK"></td></tr>
+            </form>
+           <!--  <tr>
                 <td colspan=5 align="center"
                     style="background-color:#eeffee"><b>No records found</b></td>
-            </tr>
-            <%            }
+            </tr> ---!-->
+            <%           // }
             %>
         </table>
         

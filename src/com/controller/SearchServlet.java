@@ -25,11 +25,11 @@ public class SearchServlet extends HttpServlet {
             
             
             
- 
+            ArrayList<Travel> searchList=new ArrayList<Travel>();
             Travel travel=new Travel();
             SearchService searchService=new SearchService();
-            travel=searchService.searchByName(pid,destination);            
-            request.setAttribute("piList", travel);
+            searchList=searchService.searchByName(pid,destination);            
+            request.setAttribute("searchList", searchList);
             RequestDispatcher view = request.getRequestDispatcher("/searchview.jsp");
             view.forward(request, response);
 
