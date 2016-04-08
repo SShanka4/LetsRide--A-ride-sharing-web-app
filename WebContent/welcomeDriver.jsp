@@ -14,17 +14,21 @@
 	
 	<script language="javascript">
 var addid = 0;
-
+var count = 0;
 function addInput(id){
     var docstyle = document.getElementById('addlist').style.display;
     if(docstyle == 'none')
         document.getElementById('addlist').style.display = '';
 
     addid++;
+    //count=addid;
+    
     
     	
     //var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='100' value='' class='buckinput' name='items[]' style='padding:5px;' /> <a href='javascript:void(0);' onclick='addInput("+addid+")' id='addlink_"+addid+"'>add more</a></div><br>";
+	//var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' />";
 	var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' />";
+	
 	if(addid<3){
     document.getElementById('addlist').innerHTML += text;}
 }

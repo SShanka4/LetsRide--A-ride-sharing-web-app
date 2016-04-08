@@ -140,5 +140,45 @@ public class LoginDao {
             
         }  
         return true;  
+	}
+
+	public static User fetchUser(int driverId) {
+		// TODO Auto-generated method stub
+		
+		Connect connect=new Connect();
+		Connection conn=connect.initiateConnction();
+		PreparedStatement pst;
+		ResultSet rs;
+		
+		try {
+			System.out.println("fetch user method="+driverId);
+			pst=conn.prepareStatement("select * from users where id=?");
+			pst.setInt(1, driverId);
+			rs=pst.executeQuery();
+			User user=new User();
+			while(rs.next())
+			{
+				
+				user.setId(rs.getInt(1));
+				user.setFirstname(rs.getString(2));
+				user.setLastname(rs.getString(3));
+				user.setAge(rs.getInt(5));
+				user.setEmail(rs.getString(6));
+				user.setPhone(rs.getLong(7));
+				user.setSex(rs.getString(8));
+				user.setAddress(rs.getString(9));
+				user.setCity(rs.getString(10));
+				user.setZip(rs.getLong(11));
+				user.setRole(rs.getString(12));
+				
+			}
+			System.out.println("User fetched method="+user.getFirstname());			
+			return user;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}  
 }  

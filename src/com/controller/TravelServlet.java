@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -60,8 +61,12 @@ public class TravelServlet extends HttpServlet {
         //System.out.println(user.getId());
         //System.out.println(user.getFirstname());
         //Fetching multiple sources
-        String initPickup=request.getParameter("additem_1");
-        int initPickupDist=Integer.parseInt(request.getParameter("srcDist_1"));
+       // int count=Integer.parseInt(request.getParameter("count"));
+        //ArrayList<String> pickArray=new ArrayList<String>();
+        //ArrayList<Integer> pickDistArray=new ArrayList<Integer>();
+        System.out.println("travel servlet: count");
+       
+
         
         TravelService travelService=new TravelService();
         String firstname=request.getParameter("sessionId");
@@ -104,23 +109,31 @@ public class TravelServlet extends HttpServlet {
         
         boolean userInserted=travelService.postTravel(travel);
         System.out.println("user inserted="+userInserted);
+        int i=1;
+        while(request.getParameter("additem_"+i+"")!=null)
+       {
+        String initPickup=request.getParameter("additem_"+i+"");
+        int initPickupDist=Integer.parseInt(request.getParameter("srcDist_"+i+""));
         travel.setSource(initPickup);
         travel.setDistance(initPickupDist);
         userInserted=travelService.postTravel(travel);
-        if(userInserted)
-        {
+        i=i+1;
+         }
+       // }
+       // if(userInserted)
+       // {
         	response.sendRedirect("postSuccess.jsp");
         	//RequestDispatcher rd=request.getRequestDispatcher("postSuccess.jsp");
         	//rd.forward(request, response);
         	       	
-        }
+       // }
         
       
-        else
-        {
-        	out.print("<p style=\"color:red\">Passwords do not match!</p>");
-        	RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-        }
+       // else
+       // {
+        	//out.print("<p style=\"color:red\">Passwords do not match!</p>");
+        	//RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+      //  }
   
         out.close();    
 		
