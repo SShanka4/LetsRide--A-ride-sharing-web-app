@@ -1,9 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.domain.User" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
-<head>
+	<head>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+		    <script type="text/javascript" src="js/camera.min.js"></script>
+				<script type="text/javascript">
+			   jQuery(function(){
+				jQuery('#camera_wrap_1').camera({
+					height: '500px',
+					pagination: false,
+				});
+			});
+		  </script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">		  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+ 
+  
+		  <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+				});
+			});
+		
 <script>
 function validateSearch() {
 
@@ -21,17 +46,7 @@ function validateSearch() {
       else
           return true;
 	  }
-	  
-	  
 </script>
-
-
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Search</title>
 
 <style>
     img {
@@ -51,26 +66,58 @@ function validateSearch() {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    
+}
+
+ pb {
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 40px;
+    text-align: center;
+} 
                
       </style>
 
 </head>
+
   <%
     User user =(User) session.getAttribute("name");
+    String name=user.getFirstname();
 	%>    
 <title>Welcome <%=user.getFirstname()%></title>  
 </head>  
-<body>  
-<center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
+<body> 
+			<!---start-header----->
+			<div class="header"  id="top">
+				<div class="wrap">
+					<!---start-logo---->
+					<div class="logo">
+						<a href="Home.html"><img src="projectpic.PNG" title="logo" ></a>
+					</div>
+					<!---End-logo---->
+					<!---start-top-nav---->
+					<div class="top-nav">
+						<ul>
+							<li class="active"><a href="welcome.jsp">Home</a></li>
+							<li><a href="/LetsRide/rides?name<%=user.getFirstname()%>">My Rides</a></li>
+							<li><a href="/LetsRide/update?name=<%=user.getFirstname()%>">Update Profile</a></li>
+							<li><a href="${pageContext.request.contextPath}/logout">Logoff</a></li>
+							<div class="clear"> </div>
+						</ul>
+					</div>
+					<div class="clear"> </div>
+					<!---End-top-nav---->
+				</div>
+			</div> 
+<center><img src="carpool.png" align="middle" alt="Lets Ride" ><center>
 <br>
 <p>
-
-<form class="form-horizontal"  action="${pageContext.request.contextPath}/logout" method="post">
+<!-- <form class="form-horizontal"  action="${pageContext.request.contextPath}/logout" method="post">
         <div class="row">
             <div class="col-xs-1">
             <p> </p></div>
             <div class="col-xs-2">
-               <h3 align="left" for="usr"><b>Welcome <%=user.getFirstname()%>!</b></h3>
+               
                  </div>
              <div class="col-xs-6">
                 <p> </p></div>
@@ -78,14 +125,11 @@ function validateSearch() {
             <p> </p></div>
             <div class="col-xs-2">
             <button type="submit" class="btn btn-danger">Logoff</button> 
-               <p> </p></div>
+               <p> </p></div>  
                                            
            </div>
-    </form>
-  <!--   <pre>
-    <p style="font-family:trajanpro;font-size:250%;">       Welcome <%=session.getAttribute("name")%> <p>
-    </pre>   -->
-    <p>
+    </form>   --!-->
+     <p>
     <br>
     <br>
 

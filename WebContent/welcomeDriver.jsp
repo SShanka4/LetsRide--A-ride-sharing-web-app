@@ -1,15 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="com.domain.User" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
-<head>
-<script>
+	<head>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script> 
+		    <script type="text/javascript" src="js/camera.min.js"></script>
+				<script type="text/javascript">
+			   jQuery(function(){
+				jQuery('#camera_wrap_1').camera({
+					height: '500px',
+					pagination: false,
+				});
+			});
+   <script>
    function getMoreFields() {
 	  //alert('Clicked');
 	  var d = document.getElementById("moreFields");
 	  var newName1 = document.createElement("TH");
 	  d.innerHTML="sdjbsdk";
+	  
+	  function validate() {
+
+		  var f = document.forms["signup"]["firstname"].value;
+		  var l = document.forms["signup"]["lastname"].value;
+		  var e = document.forms["signup"]["email"].value;
+		  var s = document.forms["signup"]["sex"].value;
+		  var u = document.forms["signup"]["userpass"].value;
+		  var cp = document.forms["signup"]["confirmpass"].value;
+		  var p = document.forms["signup"]["phone"].value;
+		  var a = document.forms["signup"]["age"].value;
+		  var add = document.forms["signup"]["address"].value;
+		  var c = document.forms["signup"]["city"].value;
+		  var z = document.forms["signup"]["zip"].value;
+		  var r = document.forms["signup"]["role"].value;
+		  
+		  if (f == "" ||l == "" ||e == "" ||s == "" ||u == "" ||cp == "" ||p == "" ||a == "" ||add == "" ||c == "" ||z == "" ||r == ""){
+	          document.getElementById('error').innerHTML = "all values are mandatory";
+	          return false;
+	      }
+		  else if(u!=cp){
+			  document.getElementById('error').innerHTML = "Password and Confirm password do not match";
+	          return false;
+		  }
+	      else
+	          return true;
+		  }
   	</script>
 	
 	<script language="javascript">
@@ -27,7 +64,7 @@ function addInput(id){
     	
     //var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='100' value='' class='buckinput' name='items[]' style='padding:5px;' /> <a href='javascript:void(0);' onclick='addInput("+addid+")' id='addlink_"+addid+"'>add more</a></div><br>";
 	//var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' />";
-	var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' />";
+	var text = "<br><br /><div id='additem_"+addid+"'><input type='text' size='10' value='' class='buckinput' name='additem_"+addid+"' style='padding:5px;' placeholder='pick-up point' ><input type='text' size='10' value='' class='buckinput' name='srcDist_"+addid+"' style='padding:5px;' placeholder='distance from source' />";
 	
 	if(addid<3){
     document.getElementById('addlist').innerHTML += text;}
@@ -35,10 +72,9 @@ function addInput(id){
 </script>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Search</title>
+   
+ 
+<title>Post</title>
 
 <style>
     img {
@@ -49,6 +85,16 @@ function addInput(id){
     position: relative;
     }
     
+    input[type=text], select {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+   }
+    
     input[type=submit] {
     width: 45%;
     background-color: #4CAF50;
@@ -57,46 +103,90 @@ function addInput(id){
     margin: 8px 0;
     border: none;
     border-radius: 4px;
+    cursor: pointer;  }
+    
+    pb {
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 40px;
+    text-align: center;
+} 
+
+.button {
+     width: 150%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 0px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+}
+.button2 {background-color: #008CBA;} 
                
       </style>
 </head>
   <%
     User user =(User) session.getAttribute("name");
 	%>    
-<title>Welcome <%=user.getFirstname()%></title>  
+  
 </head>  
-<body>  
-<center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
+<body> 
+			<!---start-header----->
+			<div class="header"  id="top">
+				<div class="wrap">
+					<!---start-logo---->
+					<div class="logo">
+						<a href="Home.html"><img src="projectpic.PNG" title="logo" ></a>
+					</div>
+					<!---End-logo---->
+					<!---start-top-nav---->
+					<div class="top-nav">
+						<ul>
+							<li class="active"><a href="welcomeDriver.jsp">Home</a></li>
+							<li><a href="/LetsRide/routes?name=<%=user.getFirstname()%>">My Posts</a></li>
+							<li><a href="/LetsRide/update?name=<%=user.getFirstname()%>">Update Profile</a></li>
+							<li><a href="${pageContext.request.contextPath}/logout">Logoff</a></li>
+							<div class="clear"> </div>
+						</ul>
+					</div>
+					<div class="clear"> </div>
+					<!---End-top-nav---->
+				</div>
+			</div> 
+			<p>
+			<br>
+<center><img src="carpool.png" align="middle" alt="Lets Ride" ><center>
 <br>
-<p>
+<p> 
 
+  <!--   <pre>
+    <p style="font-family:trajanpro;font-size:250%;">       Welcome <%=session.getAttribute("name")%> <p>
+    </pre>   -->
+    <p>
+    
+    <p>
 <form class="form-horizontal"  action="${pageContext.request.contextPath}/logout" method="post">
         <div class="row">
             <div class="col-xs-1">
             <p> </p></div>
             <div class="col-xs-2">
-               <h3 align="left" for="usr"><b>Welcome <%=user.getFirstname()%>!</b></h3>
+               <h3  for="usr" align="center"><b>Welcome <%=user.getFirstname()%>!</b></h3>
                  </div>
-             <div class="col-xs-6">
-                <p> </p></div>
-             <div class="col-xs-1">
-            <p> </p></div>
-            <div class="col-xs-2">
-            <button type="submit" class="btn btn-danger">Logoff</button> 
-               <p> </p></div>
-                                           
-           </div>
+             
     </form>
   <!--   <pre>
-    <p style="font-family:trajanpro;font-size:250%;">       Welcome <%=session.getAttribute("name")%> <p>
+    <p style="font-family:trajanpro;font-size:250%; align="center">       Welcome <%=session.getAttribute("name")%> <p>
     </pre>   -->
     <p>
     <br>
     <br>
 
-<h1 class="text-center"> Lets share a Ride! </h1>
-<p>
+<pb><i>Please post your travel details!!</i></pb>  
+
+
+
+<!-- <p>
 <br>
  <form method="post" name="frm" action="Search" class="form-horizontal">
  
@@ -124,19 +214,20 @@ function addInput(id){
                
             </div>
         </div>
-    </form>
+    </form> ---!-->
     
-    <h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i> Share your travel details </i></h1>
+    
   <div class="container-fluid">
    <div class="jumbotron">
       <form name="signup" action="/LetsRide/postiti" method="post" onsubmit="return validation();">  
         <fieldset style="width: 300px">  
-            <legend>Please post your travel details</legend>  
-            <table align="center">  
+             
+            <table align="center"> 
+            <div style="background:#F9EECF;" name="error" id="error"></div> 
             <div class="form-group">
                 <tr>  
                     <td>Source</td>  
-                    <td><input type="text" name="source" required="required" /></td>
+                    <td><input type="text" name="source" required="required" placeholder="Source"/></td>
                     <tr><td><div id="addlist" class="alt1" style="padding:10px;">
     
 	<input type="button" onclick="addInput(addlist)" value="More Inputs">
@@ -148,17 +239,17 @@ function addInput(id){
                 <div class="form-group">
                   <tr>  
                     <td>Destination</td>  
-                    <td><input type="text" name="destination" required="required" /></td>  
+                    <td><input type="text" name="destination" required="required" placeholder="destination"/></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Date</td>  
-                    <td><input type=date step=7 name="day" required="required"> </td>  
+                    <td><input type=date name="day" required="required" placeholder="Date"> </td>  
                 </tr> 
                 </div>
-                <tr><td><br></td></tr>
+         <!--        <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Month</td>  
@@ -219,7 +310,7 @@ function addInput(id){
  									
 										</select></td>  
                 </tr> 
-                </div>
+                </div>  --!-->
                 <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
@@ -271,7 +362,7 @@ function addInput(id){
                 <div class="form-group">
                   <tr>  
                     <td>Price</td>  
-                    <td><input type="text" name="price" required="required" /></td>  
+                    <td><input type="text" name="price" required="required" placeholder="Price"/></td>  
                 </tr> 
                 </div>
            <tr><td><br></td></tr>
@@ -279,7 +370,7 @@ function addInput(id){
  
                 <tr>  
                     <td>Distance</td>  
-                    <td><input type="text" name="distance" required="required" /></td>  
+                    <td><input type="text" name="distance" required="required" placeholder="total distance covered" /></td>  
                 </tr>
                 </div>
                 <tr><td><br></td></tr>
@@ -287,7 +378,7 @@ function addInput(id){
                 
                 <tr>  
                     <td>Capacity</td>  
-                    <td><input type="text" name="capacity" required="required" /></td>  
+                    <td><input type="text" name="capacity" required="required" placeholder="capacity"/></td>  
                 </tr> 
                 </div>
                  <div class="form-group">

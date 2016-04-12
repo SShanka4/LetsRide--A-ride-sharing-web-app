@@ -21,6 +21,15 @@ public class LogoutServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.getSession().invalidate();
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0);
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

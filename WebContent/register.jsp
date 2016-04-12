@@ -1,7 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
+	<head>
+		<title>Register</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		  <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+				});
+			});
+		</script>
+		
+	<style>
+input[type=text], select {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+   }
+   
+   input[type=password], select {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+ }
+ 
+ input[type=submit] {
+    width: 45%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+ }
+ pb {
+    font-family: "Times New Roman";
+    font-style: italic;
+    font-size: 40px;
+    text-align: center;
+} 
+</style>
 <script>
 function validate() {
 
@@ -23,7 +73,7 @@ function validate() {
           return false;
       }
 	  else if(u!=cp){
-		  document.getElementById('error').innerHTML = "Passwords and Cofirm passwords should match";
+		  document.getElementById('error').innerHTML = "Password and Confirm password do not match";
           return false;
 	  }
       else
@@ -41,13 +91,48 @@ function validate() {
 <title>Lets Ride</title>
 </head>
  
-<body>  
-<center><img src="letsride.png" align="middle" alt="Lets Ride" ><center>
-<h1 style="text-align:center";"font-size:200%";"font-family:Monotype Corsiva"><i>Please create your LetsRide Account</i></h1>
-  <div class="container-fluid">
-   <div class="jumbotron">
+<body>
+		<!---start-wrap----->
+		
+			<!---start-header----->
+			<div class="header"  id="top">
+				<div class="wrap">
+					<!---start-logo---->
+					<div class="logo">
+						<a href="index.html"><img src="projectpic.PNG" title="logo" /></a>
+					</div>
+					<!---End-logo---->
+					<!---start-top-nav---->
+					<div class="top-nav">
+					</div>
+					<div class="clear"> </div>
+					<p>
+					<br>
+					<!---End-top-nav---->
+				</div>
+			</div>
+			<!---End-header----->
+		 <!---start-content---->
+		 <pre>
+		 		  	<h3><pb>                                       Please create your LetsRide Account</pb></h3>
+		 		  	</pre>
+		 <div class="content">
+		 	<!---start-contact----->
+		 	<div class="contact">
+		 		<div class="wrap">
+				<div class="section group">				
+				<div class="col span_1_of_3">
+					<div class="img-responsive">
+					
+			    	 	<a href="index.html"><img src="Friends.jpg"></a>
+      				</div>
+      			</div>	
+      		<div class="text-center">
+				<div class="col span_2_of_3">
+				  <div class="Register-form">
   
-      <form name="signup" action="/LetsRide/login" method="post" onsubmit="return validate();">  
+       <form name="signup" action="/LetsRide/login" method="post" onsubmit="return validate();">  
+        <fieldset style="width: 300px">  
         <fieldset style="width: 300px">  
             <legend> Get your free letsride account in seconds </legend>  
             <table align="center"> 
@@ -56,21 +141,21 @@ function validate() {
             <div class="form-group">
                 <tr>  
                     <td>Firstname</td>  
-                    <td><input type="text" name="firstname"  /></td>  
+                    <td><input type="text" name="firstname" required="required" placeholder="Enter First Name"></td>  
                 </tr>  
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Lastname</td>  
-                    <td><input type="text" name="lastname"  /></td>  
+                    <td><input type="text" name="lastname" required="required" placeholder="Enter Last Name"  /></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                   <tr>  
                     <td>Email ID</td>  
-                    <td><input type="text" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /></td>  
+                    <td><input type="text" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required" placeholder="Enter E-mail" /></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
@@ -89,49 +174,49 @@ function validate() {
  
                 <tr>  
                     <td>Password</td>  
-                    <td><input type="password" name="userpass" /></td>  
+                    <td><input type="password" name="userpass" required="required" placeholder="Enter Password" /></td>  
                 </tr>
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                 <tr>  
                     <td>Confirm Password</td>  
-                    <td><input type="password" name="confirmpass" /></td>  
+                    <td><input type="password" name="confirmpass" required="required" placeholder="Re-Enter Password"  /></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                  <tr>  
                     <td>Phone</td>  
-                    <td><input type="text" name="phone" maxlength=10/></td>  
+                    <td><input type="text" name="phone" maxlength=10 required="required" placeholder="Enter Age" /></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                 <tr>  
                     <td>Age</td>  
-                    <td><input type="text" name="age" /></td>  
+                    <td><input type="text" name="age" required="required" placeholder="Enter Age" /></td>  
                 </tr> 
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                 <tr>  
                     <td>Address</td>  
-                    <td><input type="text" name="address"  /></td>  
+                    <td><input type="text" name="address" required="required" placeholder="Enter Address"  /></td>  
                 </tr>
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                 <tr>  
                     <td>City</td>  
-                    <td><input type="text" name="city"  /></td>  
+                    <td><input type="text" name="city" required="required" placeholder="Enter City"  /></td>  
                 </tr>  
                 </div>
                 <tr><td><br></td></tr>
                 <div class="form-group">
                 <tr>  
                     <td>Zip</td>  
-                    <td><input type="text" name="zip" /></td>  
+                    <td><input type="text" name="zip" required="required" placeholder="Enter Zip" /></td>  
                 </tr>     
                 </div>
                 <tr><td><br></td></tr>
@@ -151,13 +236,20 @@ function validate() {
                     <td colspan=2 align="center"><input type="submit" value="Sign Up" /></td>  
                 </tr>  
                 </div>
-              
-            </table>  
+                        
         </fieldset>  
-    </form>  
-    
-      <br>
-    <br>
-    <a href="#p">@Copyright: A Mustangs Prd.. All Rights Reserved@2016</a>
-</body>
+    </form> 
+
+				    </div>
+  				</div>				
+			  </div>
+			  </div>
+			</div>
+			</div>
+			</div>
+		 	<!---End-contact----->
+	
+		
+		 
+	</body>
 </html>

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;  
 import java.sql.SQLException;
 
+import com.domain.Travel;
 import com.domain.User;
 import com.mysql.jdbc.Statement;  
   
@@ -180,5 +181,70 @@ public class LoginDao {
 		}
 		
 		return null;
+	}
+
+	public static boolean updateBooking(Travel travel) {
+		// TODO Auto-generated method stub
+		int driverId=travel.getUserid();
+		int capacity=travel.getCapacity();
+		java.sql.Statement st;
+		Connect connect=new Connect();
+		Connection conn=connect.initiateConnction();
+		System.out.println("You are in Update Booking method");
+		String query="update travel set capacity='"+capacity+"' where userid='"+driverId+"'";
+		System.out.println("query for update capacity="+query);
+		
+		try{
+			st=conn.createStatement();
+			int p = st.executeUpdate(query);
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+
+	public static void updateUser(User user) {
+		java.sql.Statement st;
+		Connect connect=new Connect();
+		Connection conn=connect.initiateConnction();
+		System.out.println("You are in Update User method");
+		String query="update users set phone='"+user.getPhone()+"',address='"+user.getAddress()+"',city='"+user.getCity()+"',zip='"+user.getZip()+"' where id='"+user.getId()+"'";
+		System.out.println("In DAO for update USer:"+query);
+		try{
+			st=conn.createStatement();
+			int p = st.executeUpdate(query);
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void updateMyRides(Travel travel, int userid) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("LoginDAo: updateMyRides="+travel.getId());
+		int driverId=travel.getUserid();
+		int travelId=travel.getId();
+		java.sql.Statement st;
+		Connect connect=new Connect();
+		Connection conn=connect.initiateConnction();
+		System.out.println("You are in UupdateMyRides method");
+		try {
+			PreparedStatement pst = conn.prepareStatement("insert into myrides values(?,?,?)");
+			pst.setInt(1,driverId);
+			pst.setInt(2,travelId);
+			pst.setInt(3, userid);
+			
+			pst.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+				e.printStackTrace();
+		}
+		
 	}  
 }  

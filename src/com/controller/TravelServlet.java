@@ -106,19 +106,77 @@ public class TravelServlet extends HttpServlet {
         
         
         
-        
-        boolean userInserted=travelService.postTravel(travel);
-        System.out.println("user inserted="+userInserted);
+        boolean userInserted;
+     /*   boolean userInserted=travelService.postTravel(travel);
+        System.out.println("user inserted="+userInserted); */
         int i=1;
-        while(request.getParameter("additem_"+i+"")!=null)
-       {
-        String initPickup=request.getParameter("additem_"+i+"");
+      //  while(request.getParameter("additem_"+i+"")!=null)
+       //{
+        /*String initPickup=request.getParameter("additem_"+i+"");
         int initPickupDist=Integer.parseInt(request.getParameter("srcDist_"+i+""));
-        travel.setSource(initPickup);
+        travel.setDestination(initPickup);
         travel.setDistance(initPickupDist);
         userInserted=travelService.postTravel(travel);
+        travel.setSource(initPickup);
         i=i+1;
          }
+        travel.setDestination(destination);
+        userInserted=travelService.postTravel(travel); */
+        
+        
+        //Going for every combinations:
+        ArrayList<String> pickupArray=new ArrayList<String>();
+        pickupArray.add(source);
+        ArrayList<Long> distArray=new ArrayList<Long>();
+        distArray.add(distance);
+        int count=0;
+        while(request.getParameter("additem_"+i+"")!=null)
+       {
+        	distArray.add(Long.parseLong(request.getParameter("srcDist_"+i+"")));
+        	pickupArray.add(request.getParameter("additem_"+i+""));
+            i++;
+            count=i;
+       }
+        pickupArray.add(destination);
+        distArray.add(distance);
+        
+        System.out.println("pickupPoints entered="+pickupArray);
+        System.out.println("Distances entered="+distArray);
+        
+       // boolean userInsert=travelService.postItirenary(pickupArray, distArray);
+        
+       for(int a=0;a<pickupArray.size();a++)
+        {
+        	travel.setSource(pickupArray.get(a));
+        	System.out.println("Inserting Source="+pickupArray.get(a));
+        	for(int b=a+1;b<pickupArray.size();b++)
+        	{
+        		System.out.println("Inserting number="+b);
+        		travel.setDestination(pickupArray.get(b));
+        		travel.setDistance(distArray.get(b));
+        		userInserted=travelService.postTravel(travel);
+        		System.out.println("Inserting Destination="+pickupArray.get(b));
+        	}
+        }
+        /*int totalPoints=count+2;
+        int factorial=1;
+        
+        //Calculation of factorial nPr
+        for(int j=1;j<=totalPoints;j++)
+        {
+            factorial=factorial*j;
+            
+        }
+        //Calculation of total combinations
+        int totalCombinations=(factorial/(count*2));
+        
+    
+        
+       
+        	
+        travel.setDestination(destination);
+        userInserted=travelService.postTravel(travel);*/
+        
        // }
        // if(userInserted)
        // {
